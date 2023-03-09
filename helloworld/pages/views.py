@@ -3,6 +3,7 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.http import Http404
 from django.urls import reverse
 from django.views.generic import TemplateView
+from pages.models import Item, ToDoList
 
 def homePageView(request):
     # return request object and specify page.
@@ -75,3 +76,11 @@ def results(request, choice, gmat):
     return render(request, 'results.html', {'choice': workExperience, 'gmat': gmat,
                                             'prediction': singlePrediction})
 
+def todos(request):
+    print("*** Inside todos()")
+    items = Item.objects
+    itemErrandDetail = items.select_related('todolist')
+    print(itemErrandDetail[0].text)
+    # print(itemErrandDetail[0].todolist.task)
+    return render(request, 'ToDoItems.html',
+                {'ToDoItemDetail': itemErrandDetail})
