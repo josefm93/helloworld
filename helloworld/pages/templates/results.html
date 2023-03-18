@@ -1,10 +1,22 @@
-<!-- templates/home.html -->
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Results page</h1>
-  You entered the following information:<br/>
-  Years work exerience: {{choice}}<br/>
-  GMAT Score: {{gmat}}
-  Prediction: {{prediction}}
-{% endblock content %}
+  <div class="container mt-5">
+    <div class="card">
+      <div class="card-header">
+        <h1 class="card-title">March Madness Predictions</h1>
+      </div>
+      <div class="card-body">
+          <h2 class="card-subtitle mb-3">
+            {% if prediction == 1 %}
+              {{ school }} is predicted to qualify for the March Madness tournament!
+            {% else %}
+              {{ school }} is predicted to not qualify for the March Madness tournament.
+            {% endif %}
+          </h2>
+          <a href="{% url 'about' %}" class="btn btn-primary">See how your school ranks</a>
+        <a href="{% url 'predictions' %}" class="btn btn-primary">Make another prediction</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

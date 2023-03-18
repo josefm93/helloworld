@@ -1,0 +1,77 @@
+<!-- templates/predictions.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Will Your Team Qualify for March Madness?</h1>
+
+<div style="margin-top: 5%;">
+    <a href="https://barttorvik.com/" style="font-size: 24px; text-decoration: none;">
+    Look up your team's stats!
+  </a>
+</div>
+
+<!-- This form references the predictionsPost route. -->
+<form action="{% url 'predictions_post' %}" method="post">
+  {% csrf_token %}
+    <div class="row" style="margin-top: 100px;">
+    <div class="col">
+      <div class="form-group">
+        <label for="ADJOE">Adj. Offensive Efficiency</label>
+        <input type="text" class="form-control" name="ADJOE" id="ADJOE" style="width: 200px;">
+      </div>
+    </div>
+        <div class="col">
+      <div class="form-group">
+        <label for="DRB">Defensive Rebound Rate</label>
+        <input type="text" class="form-control" name="DRB" id="DRB" style="width: 200px;">
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <label for="W">Wins</label>
+        <input type="text" class="form-control" name="W" id="W" style="width: 200px;">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+        <div class="col">
+      <div class="form-group">
+        <label for="ADJDE">Adj. Defensive Efficiency</label>
+        <input type="text" class="form-control" name="ADJDE" id="ADJDE" style="width: 200px;">
+      </div>
+    </div>
+
+        <div class="col">
+      <div class="form-group">
+        <label for="TORD">Defensive Turnover Rate</label>
+        <input type="text" class="form-control" name="TORD" id="TORD" style="width: 200px;">
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="form-group">
+        <label for="G">Games Played</label>
+        <input type="text" class="form-control" name="G" id="G" style="width: 200px;">
+      </div>
+    </div>
+  </div>
+<div class="form-row" style="margin-top: 100px;">
+  <div class="form-group col-md-12">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Enter your school:</span>
+      </div>
+      <input type="text" class="form-control col-md-12" name="school" id="school">
+      <div class="input-group-append">
+        <button type="submit" class="btn btn-dark btn-block">GENERATE PREDICTION</button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+
+<!-- End of form. -->
+
+<!-- This error will notify the user if there are issues with the POST request -->
+{% if errorMessage %}<p><strong>{{errorMessage}}</strong></p>{% endif %}
+{% endblock content %}

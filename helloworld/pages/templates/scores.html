@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <div class="container mt-5">
+
+    <h1 class="text-center mb-5">Today's Scores</h1>
+
+    <div class="row">
+      {% for score in scores %}
+        <div class="col-md-6">
+          <div class="card mb-3">
+            <div class="card-header">{{ score.shortName }}</div>
+            <div class="card-body">
+              <h5 class="card-title">{{ score.current_score }}</h5>
+              <p class="card-text">{{ score.description }}</p>
+              <p class="card-text">{{ score.shortDetail }}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+
+{% endblock %}

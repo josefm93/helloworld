@@ -2,5 +2,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>About page</h1>
+  <h1>Stats</h1>
+    <div>
+      {{ scatter_plot_div|safe }}
+    </div>
+    <div>
+      {{ hist_div|safe }}
+    </div>
+  {% for plot_div in plot_divs %}
+    <div>
+      {{ plot_div|safe }}
+    </div>
+  {% endfor %}
 {% endblock content %}
